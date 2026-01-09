@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>五年级上册苏教版数学闪卡学习系统</title>
+    <title>错别字复习法思维导图</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,1769 +14,495 @@
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
+            background-color: #f5f9fc;
             color: #333;
+            line-height: 1.6;
             padding: 20px;
-            overflow-x: hidden;
+            min-height: 100vh;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
         }
         
         header {
             text-align: center;
             margin-bottom: 30px;
             padding: 20px;
-            background: #2c3e50;
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+            border-radius: 12px;
             color: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
         
         h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
         
         .subtitle {
-            font-size: 1.2rem;
-            color: #ecf0f1;
+            font-size: 1.1rem;
+            opacity: 0.9;
             max-width: 800px;
             margin: 0 auto;
-            line-height: 1.6;
         }
         
-        .main-nav {
+        .mindmap-container {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 25px 0;
-        }
-        
-        .nav-btn {
-            padding: 14px 28px;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            gap: 30px;
         }
         
-        .nav-btn:hover {
-            background: #2980b9;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-        }
-        
-        .nav-btn i {
-            font-size: 1.2rem;
-        }
-        
-        .page {
-            display: none;
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-top: 20px;
-            min-height: 500px;
-        }
-        
-        .active-page {
-            display: block;
-        }
-        
-        /* 闪卡样式 */
-        .flashcard-container {
-            perspective: 1000px;
+        .central-topic {
+            background-color: #fff;
+            border-radius: 16px;
+            padding: 25px 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 4px solid #4b6cb7;
+            text-align: center;
             width: 100%;
             max-width: 800px;
-            height: 500px;
-            margin: 30px auto;
-        }
-        
-        .flashcard {
-            width: 100%;
-            height: 100%;
             position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.8s;
-            cursor: pointer;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            z-index: 10;
         }
         
-        .flashcard.flipped {
-            transform: rotateY(180deg);
-        }
-        
-        .card-face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 30px;
-            overflow: auto;
-        }
-        
-        .card-front {
-            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
-            color: white;
-        }
-        
-        .card-back {
-            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
-            color: white;
-            transform: rotateY(180deg);
-        }
-        
-        .card-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-            text-align: center;
-        }
-        
-        .card-content {
-            font-size: 1.5rem;
-            text-align: center;
-            width: 100%;
+        .central-topic h2 {
+            color: #182848;
+            font-size: 2.2rem;
             margin-bottom: 10px;
-            flex-grow: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
         }
         
-        .card-logic {
+        .central-topic .description {
+            color: #555;
             font-size: 1.2rem;
-            line-height: 1.5;
-            width: 100%;
-            flex-grow: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
         }
         
-        .card-images-container {
+        .branches-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
-            margin: 10px 0;
-            width: 100%;
-            max-height: 220px;
-            overflow-y: auto;
-            padding: 5px;
-        }
-        
-        .card-image {
-            max-width: 100%;
-            max-height: 200px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            object-fit: contain;
-            background: white;
-            padding: 2px;
-        }
-        
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
+            gap: 25px;
             width: 100%;
         }
         
-        .card-tag {
-            padding: 5px 12px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            font-size: 0.85rem;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .branch {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 6px solid;
         }
         
-        /* 学习控制按钮 */
-        .study-controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
+        .branch:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
         }
         
-        .control-btn {
-            padding: 12px 24px;
-            background: #2ecc71;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .branch-1 {
+            border-color: #ff7e5f;
+        }
+        
+        .branch-2 {
+            border-color: #4ecdc4;
+        }
+        
+        .branch-3 {
+            border-color: #a8e6cf;
+        }
+        
+        .branch-4 {
+            border-color: #ffd166;
+        }
+        
+        .branch-header {
             display: flex;
             align-items: center;
-            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
         }
         
-        .control-btn:hover {
-            background: #27ae60;
-            transform: translateY(-3px);
-        }
-        
-        .control-btn.secondary {
-            background: #e74c3c;
-        }
-        
-        .control-btn.secondary:hover {
-            background: #c0392b;
-        }
-        
-        /* 标签样式 */
-        .tags-container {
+        .branch-icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            width: 50px;
+            height: 50px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-        
-        .tag {
-            padding: 8px 16px;
-            background: #3498db;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
             color: white;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
         }
         
-        .tag:hover {
-            background: #2980b9;
-            transform: scale(1.05);
+        .branch-1 .branch-icon {
+            background-color: #ff7e5f;
         }
         
-        .tag.active {
-            background: #2c3e50;
+        .branch-2 .branch-icon {
+            background-color: #4ecdc4;
         }
         
-        .add-tag-btn {
-            padding: 8px 16px;
-            background: #2ecc71;
-            color: white;
-            border-radius: 20px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
+        .branch-3 .branch-icon {
+            background-color: #a8e6cf;
+            color: #333;
         }
         
-        /* 表单样式 */
-        .form-group {
+        .branch-4 .branch-icon {
+            background-color: #ffd166;
+            color: #333;
+        }
+        
+        .branch-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #182848;
+        }
+        
+        .branch-content {
+            padding-left: 10px;
+        }
+        
+        .method-item {
             margin-bottom: 20px;
         }
         
-        label {
-            display: block;
-            margin-bottom: 8px;
+        .method-title {
             font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        input, textarea, select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border 0.3s;
-        }
-        
-        input:focus, textarea:focus, select:focus {
-            border-color: #3498db;
-            outline: none;
-        }
-        
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        .form-actions {
+            color: #444;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
             display: flex;
-            gap: 15px;
-            margin-top: 30px;
+            align-items: center;
         }
         
-        /* 图片上传区域 */
-        .image-upload-area {
-            border: 2px dashed #3498db;
+        .method-title i {
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+        
+        .example-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4b6cb7;
+            padding: 12px 15px;
+            margin-top: 8px;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .correct {
+            color: #2e8b57;
+            font-weight: 600;
+        }
+        
+        .incorrect {
+            color: #d9534f;
+            text-decoration: line-through;
+            margin-right: 5px;
+        }
+        
+        .contrast {
+            color: #5a67d8;
+            font-weight: 600;
+        }
+        
+        .explanation {
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .tip {
+            background-color: #e8f4fc;
             border-radius: 10px;
             padding: 25px;
-            text-align: center;
-            background: #f8fafc;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-bottom: 20px;
+            margin-top: 30px;
+            max-width: 1000px;
+            width: 100%;
+            border-left: 6px solid #4b6cb7;
         }
         
-        .image-upload-area:hover {
-            background: #e3f2fd;
-            border-color: #2980b9;
-        }
-        
-        .image-upload-area.dragover {
-            background: #bbdefb;
-            border-color: #1a237e;
-        }
-        
-        .upload-icon {
-            font-size: 2.5rem;
-            color: #3498db;
+        .tip h3 {
+            color: #182848;
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
         }
         
-        .upload-text {
-            font-size: 1.1rem;
+        .tip h3 i {
+            margin-right: 10px;
+            color: #4b6cb7;
+        }
+        
+        .tip p {
             color: #555;
-            margin-bottom: 10px;
         }
         
-        .upload-hint {
-            font-size: 0.9rem;
-            color: #777;
-        }
-        
-        .image-preview-container {
-            margin-top: 15px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
-            width: 100%;
-        }
-        
-        .image-preview-item {
-            position: relative;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 10px;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .preview-image {
-            width: 100%;
-            height: 120px;
-            object-fit: contain;
-            border-radius: 5px;
-            margin-bottom: 8px;
-        }
-        
-        .remove-image-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: rgba(231, 76, 60, 0.9);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-        
-        .remove-image-btn:hover {
-            background: rgba(192, 57, 43, 1);
-        }
-        
-        .upload-section {
-            margin-bottom: 25px;
-        }
-        
-        /* 闪卡库样式 */
-        .flashcard-library {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .library-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            border-left: 5px solid #3498db;
-        }
-        
-        .library-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .library-card-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-        
-        .card-actions button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            margin-left: 10px;
-            color: #7f8c8d;
-            transition: color 0.2s;
-        }
-        
-        .card-actions button:hover {
-            color: #e74c3c;
-        }
-        
-        .library-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-top: 10px;
-        }
-        
-        .library-tag {
-            padding: 4px 10px;
-            background: #ecf0f1;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            color: #34495e;
-        }
-        
-        /* 礼物特效 */
-        .gift-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
-            overflow: hidden;
-        }
-        
-        .gift-item {
-            position: absolute;
-            top: -100px;
-            font-size: 2.5rem;
-            opacity: 0.9;
-            z-index: 1001;
-            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
-            user-select: none;
-            animation-timing-function: linear, ease-in;
-            animation-fill-mode: forwards;
-        }
-        
-        @keyframes fallDown {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(calc(100vh - 50px)) rotate(360deg);
-                opacity: 0.8;
-            }
-        }
-        
-        @keyframes fadeOut {
-            0% {
-                opacity: 0.8;
-            }
-            100% {
-                opacity: 0;
-            }
-        }
-        
-        /* 标签页面样式 */
-        .tag-page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .back-btn {
-            padding: 10px 20px;
-            background: #7f8c8d;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .tag-flashcards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .tag-flashcard {
-            background: #3498db;
-            color: white;
-            border-radius: 10px;
-            padding: 20px;
+        footer {
             text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #777;
+            font-size: 0.9rem;
         }
         
-        .tag-flashcard:hover {
-            background: #2980b9;
-            transform: translateY(-5px);
-        }
-        
-        .tag-flashcard-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        /* 响应式设计 */
         @media (max-width: 768px) {
-            .flashcard-container {
-                height: 500px;
-            }
-            
-            .card-content {
-                font-size: 1.3rem;
-            }
-            
-            .card-logic {
-                font-size: 1.1rem;
-            }
-            
-            .main-nav {
+            .branches-container {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .nav-btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
+            .branch {
+                max-width: 100%;
             }
             
-            .flashcard-library {
-                grid-template-columns: 1fr;
-            }
-            
-            .gift-item {
+            h1 {
                 font-size: 2rem;
             }
             
-            .image-preview-container {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                gap: 10px;
+            .central-topic h2 {
+                font-size: 1.8rem;
             }
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
-        .study-info {
-            text-align: center;
-            margin-top: 20px;
-            color: #7f8c8d;
-        }
-        
-        /* 保存提示 */
-        .save-indicator {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #2ecc71;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 10000;
-            animation: slideIn 0.3s ease, fadeOut 0.3s ease 2s forwards;
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        /* 图片上传多选 */
-        .image-counter {
-            font-size: 0.85rem;
-            color: #3498db;
-            margin-top: 5px;
-            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-graduation-cap"></i> 五年级上册苏教版数学闪卡学习系统</h1>
-            <p class="subtitle">通过交互式闪卡掌握五年级上册数学知识点。点击卡片翻转查看解题逻辑，可上传多张图片辅助学习。</p>
+            <h1><i class="fas fa-brain"></i> 错别字复习法思维导图</h1>
+            <p class="subtitle">系统化掌握汉字书写，告别常见错别字。本思维导图提供四种高效记忆方法，帮助您准确记住易错字词。</p>
         </header>
         
-        <div class="main-nav">
-            <button class="nav-btn" id="startStudyBtn">
-                <i class="fas fa-play-circle"></i> 开始学习闪卡
-            </button>
-            <button class="nav-btn" id="addFlashcardBtn">
-                <i class="fas fa-plus-circle"></i> 添加新闪卡
-            </button>
-            <button class="nav-btn" id="selectTagBtn">
-                <i class="fas fa-tags"></i> 按标签选择学习
-            </button>
-            <button class="nav-btn" id="flashcardLibraryBtn">
-                <i class="fas fa-book"></i> 闪卡库管理
-            </button>
-        </div>
-        
-        <!-- 学习页面 -->
-        <div id="studyPage" class="page active-page">
-            <div class="tag-page-header">
-                <h2><i class="fas fa-book-open"></i> 闪卡学习</h2>
-                <div>
-                    <button class="control-btn" id="shuffleBtn">
-                        <i class="fas fa-random"></i> 乱序学习
-                    </button>
-                    <button class="control-btn" id="giftBtn">
-                        <i class="fas fa-gift"></i> 礼物惊喜
-                    </button>
-                </div>
+        <div class="mindmap-container">
+            <div class="central-topic">
+                <h2>如何准确记住字词？</h2>
+                <p class="description">通过系统方法辨识、理解并巩固易错汉字</p>
             </div>
             
-            <div class="flashcard-container">
-                <div class="flashcard" id="studyFlashcard">
-                    <div class="card-face card-front">
-                        <div class="card-title">题目</div>
-                        <div class="card-content" id="cardQuestion">
-                            点击下方按钮选择标签，然后点击卡片开始学习
+            <div class="branches-container">
+                <!-- 分支一：错误分类法 -->
+                <div class="branch branch-1">
+                    <div class="branch-header">
+                        <div class="branch-icon">
+                            <i class="fas fa-sitemap"></i>
                         </div>
-                        <div class="card-images-container" id="cardQuestionImages">
-                            <!-- 题目图片将通过JS动态添加 -->
-                        </div>
-                        <div class="card-tags" id="frontTags">
-                            <!-- 标签将通过JS动态添加 -->
-                        </div>
-                    </div>
-                    <div class="card-face card-back">
-                        <div class="card-title">解题逻辑</div>
-                        <div class="card-logic" id="cardLogic">
-                            解题逻辑将在这里显示
-                        </div>
-                        <div class="card-images-container" id="cardLogicImages">
-                            <!-- 解题图片将通过JS动态添加 -->
-                        </div>
-                        <div class="card-tags" id="backTags">
-                            <!-- 标签将通过JS动态添加 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="study-controls">
-                <button class="control-btn" id="prevCardBtn">
-                    <i class="fas fa-arrow-left"></i> 上一张
-                </button>
-                <button class="control-btn" id="nextCardBtn">
-                    下一张 <i class="fas fa-arrow-right"></i>
-                </button>
-                <button class="control-btn secondary" id="backToHomeBtn">
-                    <i class="fas fa-home"></i> 返回首页
-                </button>
-            </div>
-            
-            <div class="study-info">
-                <p>
-                    当前进度: <span id="currentCardIndex">0</span> / <span id="totalCards">0</span>
-                </p>
-                <p style="margin-top: 10px; font-size: 0.9rem; color: #95a5a6;">
-                    <i class="fas fa-info-circle"></i> 数据已自动保存，刷新页面不会丢失
-                </p>
-            </div>
-        </div>
-        
-        <!-- 添加闪卡页面 -->
-        <div id="addFlashcardPage" class="page">
-            <h2><i class="fas fa-plus-circle"></i> 添加新闪卡</h2>
-            
-            <form id="flashcardForm">
-                <div class="form-group">
-                    <label for="question">题目/问题:</label>
-                    <textarea id="question" placeholder="请输入题目内容..."></textarea>
-                    <small style="color: #7f8c8d;">注意：如果上传题目图片，则此处可不填</small>
-                </div>
-                
-                <div class="upload-section">
-                    <label>题目图片 (可选，可上传多张):</label>
-                    <div class="image-upload-area" id="questionUploadArea">
-                        <div class="upload-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                        </div>
-                        <div class="upload-text">点击或拖拽上传题目图片</div>
-                        <div class="upload-hint">支持 JPG, PNG 格式，可多选，每张最大 5MB</div>
-                        <div class="image-counter" id="questionImageCount">已选择 0 张图片</div>
-                        <input type="file" id="questionImageInput" accept="image/*" multiple style="display: none;">
-                    </div>
-                    <div class="image-preview-container" id="questionPreview">
-                        <!-- 题目图片预览 -->
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="logic">解题逻辑/答案:</label>
-                    <textarea id="logic" placeholder="请输入解题逻辑或答案..."></textarea>
-                    <small style="color: #7f8c8d;">注意：如果上传解题图片，则此处可不填</small>
-                </div>
-                
-                <div class="upload-section">
-                    <label>解题图片 (可选，可上传多张):</label>
-                    <div class="image-upload-area" id="logicUploadArea">
-                        <div class="upload-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                        </div>
-                        <div class="upload-text">点击或拖拽上传解题图片</div>
-                        <div class="upload-hint">支持 JPG, PNG 格式，可多选，每张最大 5MB</div>
-                        <div class="image-counter" id="logicImageCount">已选择 0 张图片</div>
-                        <input type="file" id="logicImageInput" accept="image/*" multiple style="display: none;">
-                    </div>
-                    <div class="image-preview-container" id="logicPreview">
-                        <!-- 解题图片预览 -->
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>选择标签:</label>
-                    <div class="tags-container" id="formTags">
-                        <!-- 标签将通过JS动态添加 -->
+                        <h3 class="branch-title">错误分类法</h3>
                     </div>
                     
-                    <div style="margin-top: 15px;">
-                        <input type="text" id="newTag" placeholder="输入新标签名称" style="width: auto; display: inline-block;">
-                        <button type="button" class="add-tag-btn" id="addTagBtn">
-                            <i class="fas fa-plus"></i> 添加标签
-                        </button>
+                    <div class="branch-content">
+                        <div class="method-item">
+                            <div class="method-title">
+                                <i class="fas fa-font"></i> 字形易错
+                            </div>
+                            <div class="example-box">
+                                <p><span class="correct">应接不暇</span>（<span class="contrast">日字旁，与时间有关</span>）</p>
+                                <p>对比：<span class="correct">瑕</span>（<span class="contrast">王字旁，与玉石有关</span>）</p>
+                            </div>
+                        </div>
+                        
+                        <div class="method-item">
+                            <div class="method-title">
+                                <i class="fas fa-volume-up"></i> 字音易错
+                            </div>
+                            <div class="example-box">
+                                <p><span class="correct">纠（jiū）正</span> vs. <span class="correct">炯（jiǒng）炯有神</span></p>
+                                <p class="explanation">注意声母和韵母的差异，避免误读</p>
+                            </div>
+                        </div>
+                        
+                        <div class="method-item">
+                            <div class="method-title">
+                                <i class="fas fa-exchange-alt"></i> 字义混淆
+                            </div>
+                            <div class="example-box">
+                                <p><span class="correct">燥</span>（干燥、枯燥） vs. <span class="correct">躁</span>（急躁、烦躁）</p>
+                                <p class="explanation">"燥"与火有关，指干燥；"躁"与足有关，指急躁</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="form-actions">
-                    <button type="submit" class="control-btn">
-                        <i class="fas fa-save"></i> 保存闪卡
-                    </button>
-                    <button type="button" class="control-btn secondary" id="cancelAddBtn">
-                        <i class="fas fa-times"></i> 取消
-                    </button>
+                <!-- 分支二：对比记忆法 -->
+                <div class="branch branch-2">
+                    <div class="branch-header">
+                        <div class="branch-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3 class="branch-title">对比记忆法</h3>
+                    </div>
+                    
+                    <div class="branch-content">
+                        <div class="method-item">
+                            <div class="method-title">
+                                <i class="fas fa-eye"></i> 形近字对比
+                            </div>
+                            <div class="example-box">
+                                <p><span class="correct">暇（xiá）</span>：应接不暇、目不暇接</p>
+                                <p><span class="correct">瑕（xiá）</span>：瑕疵、洁白无瑕</p>
+                                <p class="explanation">注意偏旁差异："暇"与时间有关，"瑕"与玉石有关</p>
+                            </div>
+                        </div>
+                        
+                        <div class="method-item">
+                            <div class="method-title">
+                                <i class="fas fa-assistive-listening-systems"></i> 音近字对比
+                            </div>
+                            <div class="example-box">
+                                <p><span class="correct">燥（zào）</span>：干燥、口干舌燥</p>
+                                <p><span class="correct">躁（zào）</span>：急躁、不骄不躁</p>
+                                <p class="explanation">发音相同，但字形和字义完全不同，需结合词义记忆</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
-        </div>
-        
-        <!-- 按标签选择页面 -->
-        <div id="selectTagPage" class="page">
-            <div class="tag-page-header">
-                <h2><i class="fas fa-tags"></i> 按标签选择学习</h2>
-                <button class="back-btn" id="backFromTagsBtn">
-                    <i class="fas fa-arrow-left"></i> 返回
-                </button>
-            </div>
-            
-            <p style="margin-bottom: 20px; color: #7f8c8d;">点击标签查看该标签下的所有闪卡</p>
-            
-            <div class="tags-container" id="allTagsContainer">
-                <!-- 所有标签将通过JS动态添加 -->
-            </div>
-            
-            <div id="tagFlashcardsContainer" class="hidden">
-                <h3 id="selectedTagTitle" style="margin: 30px 0 20px 0;"></h3>
-                <div class="tag-flashcards" id="tagFlashcards">
-                    <!-- 标签下的闪卡将通过JS动态添加 -->
+                
+                <!-- 分支三：理解记忆法 -->
+                <div class="branch branch-3">
+                    <div class="branch-header">
+                        <div class="branch-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="branch-title">理解记忆法</h3>
+                    </div>
+                    
+                    <div class="branch-content">
+                        <div class="method-item">
+                            <div class="method-title">
+                                <i class="fas fa-search"></i> 理解词语含义
+                            </div>
+                            <div class="example-box">
+                                <p><span class="correct">"应接不暇"</span>：原指美景繁多，看不过来，所以用<span class="contrast">"日"字旁的"暇"</span>（闲暇、空闲时间）</p>
+                                <p class="explanation">理解字义与词义的关联，通过逻辑记忆而非机械记忆</p>
+                            </div>
+                        </div>
+                        
+                        <div class="method-item">
+                            <div class="method-title">
+                                <i class="fas fa-cogs"></i> 分析构词原理
+                            </div>
+                            <div class="example-box">
+                                <p><span class="correct">"干燥"</span>：缺少水分，与"火"相关，故用"火"字旁的"燥"</p>
+                                <p><span class="correct">"急躁"</span>：心情不宁，与"足"相关（跺脚），故用"足"字旁的"躁"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 分支四：刻意练习法 -->
+                <div class="branch branch-4">
+                    <div class="branch-header">
+                        <div class="branch-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3 class="branch-title">刻意练习法</h3>
+                    </div>
+                    
+                    <div class="branch-content">
+                        <div class="method-item">
+                            <div class="method-title">
+                                <i class="fas fa-pencil-alt"></i> 抄写强化
+                            </div>
+                            <div class="example-box">
+                                <p>反复书写易错字词，强化肌肉记忆</p>
+                                <p class="explanation">每个易错字至少抄写5-10遍，注意笔画顺序</p>
+                            </div>
+                        </div>
+                        
+                        <div class="method-item">
+                            <div class="method-title">
+                                <i class="fas fa-book"></i> 建立错题本
+                            </div>
+                            <div class="example-box">
+                                <p>整理归纳错别字，定期回顾复习</p>
+                                <p class="explanation">按错误类型分类记录，每周复习一次</p>
+                            </div>
+                        </div>
+                        
+                        <div class="method-item">
+                            <div class="method-title">
+                                <i class="fas fa-microphone-alt"></i> 词语听写
+                            </div>
+                            <div class="example-box">
+                                <p>检测记忆效果，巩固正确写法</p>
+                                <p class="explanation">请他人协助听写或使用录音自我检测</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- 闪卡库页面 -->
-        <div id="flashcardLibraryPage" class="page">
-            <div class="tag-page-header">
-                <h2><i class="fas fa-book"></i> 闪卡库管理</h2>
-                <button class="back-btn" id="backFromLibraryBtn">
-                    <i class="fas fa-arrow-left"></i> 返回首页
-                </button>
-            </div>
             
-            <p style="margin-bottom: 20px; color: #7f8c8d;">您可以编辑或删除已有的闪卡</p>
-            
-            <div class="flashcard-library" id="flashcardLibrary">
-                <!-- 闪卡将通过JS动态添加 -->
+            <div class="tip">
+                <h3><i class="fas fa-lightbulb"></i> 学习建议</h3>
+                <p>四种方法结合使用效果最佳：先使用<strong>错误分类法</strong>识别自己常犯的错误类型，然后通过<strong>对比记忆法</strong>区分易混淆字词，接着用<strong>理解记忆法</strong>掌握字词本质含义，最后通过<strong>刻意练习法</strong>巩固记忆。建议每周抽出固定时间进行错别字复习，形成长期记忆。</p>
             </div>
         </div>
         
-        <!-- 礼物特效容器 -->
-        <div class="gift-container" id="giftContainer"></div>
+        <footer>
+            <p>错别字复习法思维导图 &copy; 2023 | 设计用于汉字学习与记忆</p>
+            <p>记住：准确书写汉字是对中华文化的尊重和传承</p>
+        </footer>
     </div>
-    
+
     <script>
-        // 数据存储键名
-        const FLASHCARDS_STORAGE_KEY = 'math_flashcards_data';
-        const TAGS_STORAGE_KEY = 'math_flashcards_tags';
-        
-        // 初始化数据 - 从localStorage加载或使用默认数据
-        function loadData() {
-            const savedFlashcards = localStorage.getItem(FLASHCARDS_STORAGE_KEY);
-            const savedTags = localStorage.getItem(TAGS_STORAGE_KEY);
+        // 添加交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const branches = document.querySelectorAll('.branch');
             
-            if (savedFlashcards) {
-                flashcards = JSON.parse(savedFlashcards);
-            } else {
-                // 默认闪卡数据
-                flashcards = [
-                    {
-                        id: 1,
-                        question: "一个长方形的长是8厘米，宽是5厘米，它的周长是多少厘米？",
-                        logic: "长方形周长公式：周长 = (长 + 宽) × 2。所以周长 = (8 + 5) × 2 = 13 × 2 = 26厘米。",
-                        tags: ["几何", "周长"],
-                        questionImages: [],
-                        logicImages: []
-                    },
-                    {
-                        id: 2,
-                        question: "小明有36颗糖，他想平均分给4个朋友，每人能分到几颗糖？",
-                        logic: "这是一个除法问题：36 ÷ 4 = 9。所以每个朋友可以分到9颗糖。",
-                        tags: ["除法", "应用题"],
-                        questionImages: [],
-                        logicImages: []
-                    },
-                    {
-                        id: 3,
-                        question: "计算：3/5 + 1/5 = ?",
-                        logic: "同分母分数相加，分母不变，分子相加：3/5 + 1/5 = (3+1)/5 = 4/5。",
-                        tags: ["分数", "加法"],
-                        questionImages: [],
-                        logicImages: []
-                    },
-                    {
-                        id: 4,
-                        question: "一个正方形的边长是6厘米，它的面积是多少平方厘米？",
-                        logic: "正方形面积公式：面积 = 边长 × 边长。所以面积 = 6 × 6 = 36平方厘米。",
-                        tags: ["几何", "面积"],
-                        questionImages: [],
-                        logicImages: []
-                    },
-                    {
-                        id: 5,
-                        question: "小华买了3本练习本，每本4元，他付了20元，应找回多少元？",
-                        logic: "首先计算总价：3 × 4 = 12元。然后计算找回的钱：20 - 12 = 8元。所以应找回8元。",
-                        tags: ["乘法", "减法", "应用题"],
-                        questionImages: [],
-                        logicImages: []
-                    },
-                    {
-                        id: 6,
-                        question: "把0.25化成分数是多少？",
-                        logic: "0.25 = 25/100 = 1/4。所以0.25化成分数是1/4。",
-                        tags: ["小数", "分数", "转换"],
-                        questionImages: [],
-                        logicImages: []
-                    }
-                ];
-                saveFlashcards(); // 保存默认数据
-            }
-            
-            if (savedTags) {
-                tags = JSON.parse(savedTags);
-            } else {
-                // 默认标签数据
-                tags = ["几何", "周长", "面积", "分数", "小数", "加法", "减法", "乘法", "除法", "应用题", "转换"];
-                saveTags(); // 保存默认数据
-            }
-        }
-        
-        // 保存闪卡数据到localStorage
-        function saveFlashcards() {
-            localStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(flashcards));
-            showSaveIndicator('闪卡数据已保存');
-        }
-        
-        // 保存标签数据到localStorage
-        function saveTags() {
-            localStorage.setItem(TAGS_STORAGE_KEY, JSON.stringify(tags));
-            showSaveIndicator('标签数据已保存');
-        }
-        
-        // 显示保存提示
-        function showSaveIndicator(message) {
-            // 移除已有的提示
-            const existingIndicator = document.querySelector('.save-indicator');
-            if (existingIndicator) {
-                existingIndicator.remove();
-            }
-            
-            // 创建新的提示
-            const indicator = document.createElement('div');
-            indicator.className = 'save-indicator';
-            indicator.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
-            document.body.appendChild(indicator);
-            
-            // 3秒后自动移除
-            setTimeout(() => {
-                if (indicator.parentNode) {
-                    indicator.remove();
-                }
-            }, 3000);
-        }
-        
-        // 闪卡数据存储（将从localStorage加载）
-        let flashcards = [];
-        
-        // 标签数据（将从localStorage加载）
-        let tags = [];
-        
-        // 当前学习状态
-        let currentStudyIndex = 0;
-        let currentStudyTag = "all";
-        let studyDeck = [];
-        
-        // 当前上传的图片数据
-        let currentQuestionImages = [];
-        let currentLogicImages = [];
-        
-        // 卡通图案列表
-        const giftItems = [
-            "🐱", "🐶", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮",
-            "🐷", "🐸", "🐵", "🐔", "🐧", "🐦", "🐤", "🦄", "🐙", "🐠",
-            "🌟", "⭐", "🎀", "🎁", "🎈", "🎉", "🎊", "📚", "✏️", "📐",
-            "🧮", "🎯", "🏆", "👍", "❤️", "💡", "🎨", "🎮", "🎵", "🎂"
-        ];
-        
-        // DOM元素
-        const studyPage = document.getElementById('studyPage');
-        const addFlashcardPage = document.getElementById('addFlashcardPage');
-        const selectTagPage = document.getElementById('selectTagPage');
-        const flashcardLibraryPage = document.getElementById('flashcardLibraryPage');
-        
-        const startStudyBtn = document.getElementById('startStudyBtn');
-        const addFlashcardBtn = document.getElementById('addFlashcardBtn');
-        const selectTagBtn = document.getElementById('selectTagBtn');
-        const flashcardLibraryBtn = document.getElementById('flashcardLibraryBtn');
-        
-        const studyFlashcard = document.getElementById('studyFlashcard');
-        const cardQuestion = document.getElementById('cardQuestion');
-        const cardLogic = document.getElementById('cardLogic');
-        const cardQuestionImages = document.getElementById('cardQuestionImages');
-        const cardLogicImages = document.getElementById('cardLogicImages');
-        const frontTags = document.getElementById('frontTags');
-        const backTags = document.getElementById('backTags');
-        
-        const prevCardBtn = document.getElementById('prevCardBtn');
-        const nextCardBtn = document.getElementById('nextCardBtn');
-        const backToHomeBtn = document.getElementById('backToHomeBtn');
-        const shuffleBtn = document.getElementById('shuffleBtn');
-        const giftBtn = document.getElementById('giftBtn');
-        
-        const flashcardForm = document.getElementById('flashcardForm');
-        const cancelAddBtn = document.getElementById('cancelAddBtn');
-        
-        const backFromTagsBtn = document.getElementById('backFromTagsBtn');
-        const backFromLibraryBtn = document.getElementById('backFromLibraryBtn');
-        
-        const formTags = document.getElementById('formTags');
-        const allTagsContainer = document.getElementById('allTagsContainer');
-        
-        const currentCardIndex = document.getElementById('currentCardIndex');
-        const totalCards = document.getElementById('totalCards');
-        const giftContainer = document.getElementById('giftContainer');
-        
-        // 图片上传相关元素
-        const questionUploadArea = document.getElementById('questionUploadArea');
-        const questionImageInput = document.getElementById('questionImageInput');
-        const questionPreview = document.getElementById('questionPreview');
-        const questionImageCount = document.getElementById('questionImageCount');
-        
-        const logicUploadArea = document.getElementById('logicUploadArea');
-        const logicImageInput = document.getElementById('logicImageInput');
-        const logicPreview = document.getElementById('logicPreview');
-        const logicImageCount = document.getElementById('logicImageCount');
-        
-        // 页面切换功能
-        function showPage(pageId) {
-            // 隐藏所有页面
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active-page');
-            });
-            
-            // 显示目标页面
-            document.getElementById(pageId).classList.add('active-page');
-            
-            // 如果显示学习页面，初始化学习内容
-            if (pageId === 'studyPage') {
-                initStudyPage();
-            }
-            
-            // 如果显示标签选择页面，初始化标签
-            if (pageId === 'selectTagPage') {
-                initTagSelectionPage();
-            }
-            
-            // 如果显示闪卡库页面，加载闪卡
-            if (pageId === 'flashcardLibraryPage') {
-                loadFlashcardLibrary();
-            }
-        }
-        
-        // 初始化学习页面
-        function initStudyPage() {
-            // 根据当前标签筛选闪卡
-            filterStudyDeck();
-            
-            // 更新进度显示
-            updateProgress();
-            
-            // 显示第一张卡片
-            showCard(currentStudyIndex);
-        }
-        
-        // 根据标签筛选学习卡片
-        function filterStudyDeck() {
-            if (currentStudyTag === "all") {
-                studyDeck = [...flashcards];
-            } else {
-                studyDeck = flashcards.filter(card => 
-                    card.tags && card.tags.includes(currentStudyTag)
-                );
-            }
-            
-            // 如果没有卡片，显示提示
-            if (studyDeck.length === 0) {
-                cardQuestion.textContent = `没有找到属于"${currentStudyTag}"标签的闪卡，请添加或选择其他标签`;
-                cardLogic.textContent = "请在添加闪卡页面创建新闪卡，或返回首页选择其他标签";
-                cardQuestionImages.innerHTML = "";
-                cardLogicImages.innerHTML = "";
-                frontTags.innerHTML = "";
-                backTags.innerHTML = "";
-            }
-        }
-        
-        // 显示指定索引的卡片
-        function showCard(index) {
-            // 确保卡片正面朝上
-            studyFlashcard.classList.remove('flipped');
-            
-            if (studyDeck.length === 0) return;
-            
-            // 确保索引在有效范围内
-            if (index < 0) index = studyDeck.length - 1;
-            if (index >= studyDeck.length) index = 0;
-            
-            currentStudyIndex = index;
-            const card = studyDeck[index];
-            
-            // 更新卡片内容
-            cardQuestion.textContent = card.question;
-            cardLogic.textContent = card.logic;
-            
-            // 更新题目图片
-            cardQuestionImages.innerHTML = "";
-            if (card.questionImages && card.questionImages.length > 0) {
-                card.questionImages.forEach((imageData, i) => {
-                    const img = document.createElement('img');
-                    img.src = imageData;
-                    img.alt = `题目图片 ${i+1}`;
-                    img.className = "card-image";
-                    cardQuestionImages.appendChild(img);
-                });
-            }
-            
-            // 更新解题图片
-            cardLogicImages.innerHTML = "";
-            if (card.logicImages && card.logicImages.length > 0) {
-                card.logicImages.forEach((imageData, i) => {
-                    const img = document.createElement('img');
-                    img.src = imageData;
-                    img.alt = `解题图片 ${i+1}`;
-                    img.className = "card-image";
-                    cardLogicImages.appendChild(img);
-                });
-            }
-            
-            // 更新标签显示
-            updateCardTags(card);
-            
-            // 更新进度显示
-            updateProgress();
-        }
-        
-        // 更新卡片上的标签显示
-        function updateCardTags(card) {
-            frontTags.innerHTML = "";
-            backTags.innerHTML = "";
-            
-            if (card.tags && card.tags.length > 0) {
-                card.tags.forEach(tag => {
-                    const frontTag = document.createElement('span');
-                    frontTag.className = 'card-tag';
-                    frontTag.textContent = tag;
-                    frontTags.appendChild(frontTag);
-                    
-                    const backTag = document.createElement('span');
-                    backTag.className = 'card-tag';
-                    backTag.textContent = tag;
-                    backTags.appendChild(backTag);
-                });
-            } else {
-                const noTag = document.createElement('span');
-                noTag.className = 'card-tag';
-                noTag.textContent = "无标签";
-                frontTags.appendChild(noTag);
-                backTags.appendChild(noTag.cloneNode(true));
-            }
-        }
-        
-        // 更新学习进度显示
-        function updateProgress() {
-            currentCardIndex.textContent = studyDeck.length > 0 ? currentStudyIndex + 1 : 0;
-            totalCards.textContent = studyDeck.length;
-        }
-        
-        // 初始化标签选择页面
-        function initTagSelectionPage() {
-            allTagsContainer.innerHTML = "";
-            
-            // 添加"全部"标签
-            const allTag = document.createElement('span');
-            allTag.className = 'tag';
-            allTag.textContent = "全部";
-            allTag.addEventListener('click', () => {
-                showTagFlashcards("全部", flashcards);
-            });
-            allTagsContainer.appendChild(allTag);
-            
-            // 添加其他标签
-            tags.forEach(tag => {
-                const tagElement = document.createElement('span');
-                tagElement.className = 'tag';
-                tagElement.textContent = tag;
-                tagElement.addEventListener('click', () => {
-                    const taggedCards = flashcards.filter(card => 
-                        card.tags && card.tags.includes(tag)
-                    );
-                    showTagFlashcards(tag, taggedCards);
-                });
-                
-                allTagsContainer.appendChild(tagElement);
-            });
-        }
-        
-        // 显示标签下的闪卡
-        function showTagFlashcards(tagName, cards) {
-            document.getElementById('selectedTagTitle').textContent = `"${tagName}"标签下的闪卡 (${cards.length}张)`;
-            
-            const tagFlashcards = document.getElementById('tagFlashcards');
-            tagFlashcards.innerHTML = "";
-            
-            if (cards.length === 0) {
-                tagFlashcards.innerHTML = '<p style="color:#7f8c8d; text-align:center; width:100%;">该标签下暂无闪卡</p>';
-            } else {
-                cards.forEach(card => {
-                    const cardElement = document.createElement('div');
-                    cardElement.className = 'tag-flashcard';
-                    cardElement.innerHTML = `
-                        <div class="tag-flashcard-title">${card.question.substring(0, 30)}${card.question.length > 30 ? '...' : ''}</div>
-                        <div>点击开始学习</div>
-                    `;
-                    
-                    cardElement.addEventListener('click', () => {
-                        // 设置当前学习标签
-                        currentStudyTag = tagName === "全部" ? "all" : tagName;
-                        
-                        // 切换到学习页面
-                        showPage('studyPage');
-                        
-                        // 筛选卡片
-                        filterStudyDeck();
-                        
-                        // 找到当前卡片的索引
-                        const cardIndex = studyDeck.findIndex(c => c.id === card.id);
-                        currentStudyIndex = cardIndex >= 0 ? cardIndex : 0;
-                        
-                        // 显示卡片
-                        showCard(currentStudyIndex);
-                    });
-                    
-                    tagFlashcards.appendChild(cardElement);
-                });
-            }
-            
-            // 显示闪卡容器
-            document.getElementById('tagFlashcardsContainer').classList.remove('hidden');
-        }
-        
-        // 加载闪卡库
-        function loadFlashcardLibrary() {
-            const library = document.getElementById('flashcardLibrary');
-            library.innerHTML = "";
-            
-            if (flashcards.length === 0) {
-                library.innerHTML = '<p style="color:#7f8c8d; text-align:center; width:100%;">暂无闪卡，请添加新闪卡</p>';
-                return;
-            }
-            
-            flashcards.forEach(card => {
-                const cardElement = document.createElement('div');
-                cardElement.className = 'library-card';
-                
-                let questionPreview = card.question || "";
-                let logicPreview = card.logic || "";
-                
-                if (questionPreview.length > 80) questionPreview = questionPreview.substring(0, 80) + '...';
-                if (logicPreview.length > 100) logicPreview = logicPreview.substring(0, 100) + '...';
-                
-                cardElement.innerHTML = `
-                    <div class="library-card-header">
-                        <h3>闪卡 #${card.id}</h3>
-                        <div class="card-actions">
-                            <button class="edit-btn" data-id="${card.id}"><i class="fas fa-edit"></i></button>
-                            <button class="delete-btn" data-id="${card.id}"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                    <p><strong>题目:</strong> ${questionPreview || '[图片题目]'}</p>
-                    <p><strong>解题逻辑:</strong> ${logicPreview || '[图片解答]'}</p>
-                    <div style="font-size:0.8rem; color:#7f8c8d; margin:5px 0;">
-                        <i class="fas fa-image"></i> 题目图片: ${card.questionImages ? card.questionImages.length : 0}张 | 
-                        解题图片: ${card.logicImages ? card.logicImages.length : 0}张
-                    </div>
-                    <div class="library-tags">
-                        ${card.tags.map(tag => `<span class="library-tag">${tag}</span>`).join('')}
-                    </div>
-                `;
-                
-                library.appendChild(cardElement);
-            });
-            
-            // 添加编辑和删除功能
-            document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const id = parseInt(this.dataset.id);
-                    editFlashcard(id);
+            // 为每个分支添加点击效果
+            branches.forEach(branch => {
+                branch.addEventListener('click', function() {
+                    // 移除其他分支的active类
+                    branches.forEach(b => b.classList.remove('active'));
+                    // 为当前分支添加active类
+                    this.classList.add('active');
                 });
             });
             
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const id = parseInt(this.dataset.id);
-                    deleteFlashcard(id);
-                });
-            });
-        }
-        
-        // 编辑闪卡
-        function editFlashcard(id) {
-            const cardIndex = flashcards.findIndex(card => card.id === id);
-            if (cardIndex !== -1) {
-                const card = flashcards[cardIndex];
-                
-                // 填充表单
-                document.getElementById('question').value = card.question;
-                document.getElementById('logic').value = card.logic;
-                
-                // 设置标签
-                updateFormTags(card.tags);
-                
-                // 显示图片预览
-                currentQuestionImages = [...(card.questionImages || [])];
-                currentLogicImages = [...(card.logicImages || [])];
-                
-                updateImagePreview(questionPreview, currentQuestionImages, "question");
-                updateImagePreview(logicPreview, currentLogicImages, "logic");
-                
-                updateImageCount();
-                
-                // 显示添加页面
-                showPage('addFlashcardPage');
-                
-                // 临时存储编辑的卡片ID
-                flashcardForm.dataset.editingId = id;
-            }
-        }
-        
-        // 删除闪卡
-        function deleteFlashcard(id) {
-            if (confirm('确定要删除这张闪卡吗？')) {
-                flashcards = flashcards.filter(card => card.id !== id);
-                saveFlashcards();
-                loadFlashcardLibrary();
-                
-                // 如果正在学习这张卡片，更新学习页面
-                if (studyPage.classList.contains('active-page')) {
-                    initStudyPage();
-                }
-            }
-        }
-        
-        // 更新表单中的标签
-        function updateFormTags(selectedTags = []) {
-            formTags.innerHTML = "";
-            
-            tags.forEach(tag => {
-                const tagElement = document.createElement('span');
-                tagElement.className = 'tag';
-                if (selectedTags.includes(tag)) {
-                    tagElement.classList.add('active');
-                }
-                tagElement.dataset.tag = tag;
-                tagElement.textContent = tag;
-                tagElement.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                });
-                
-                formTags.appendChild(tagElement);
-            });
-        }
-        
-        // 更新图片预览
-        function updateImagePreview(previewContainer, images, type) {
-            previewContainer.innerHTML = "";
-            
-            images.forEach((imageData, index) => {
-                const previewItem = document.createElement('div');
-                previewItem.className = 'image-preview-item';
-                
-                const img = document.createElement('img');
-                img.src = imageData;
-                img.alt = type === "question" ? `题目图片 ${index+1}` : `解题图片 ${index+1}`;
-                img.className = "preview-image";
-                
-                const removeBtn = document.createElement('button');
-                removeBtn.type = "button";
-                removeBtn.className = "remove-image-btn";
-                removeBtn.innerHTML = '×';
-                removeBtn.addEventListener('click', function() {
-                    if (type === "question") {
-                        currentQuestionImages.splice(index, 1);
-                        updateImagePreview(questionPreview, currentQuestionImages, "question");
-                    } else {
-                        currentLogicImages.splice(index, 1);
-                        updateImagePreview(logicPreview, currentLogicImages, "logic");
-                    }
-                    updateImageCount();
-                });
-                
-                previewItem.appendChild(img);
-                previewItem.appendChild(removeBtn);
-                previewContainer.appendChild(previewItem);
-            });
-        }
-        
-        // 更新图片计数显示
-        function updateImageCount() {
-            questionImageCount.textContent = `已选择 ${currentQuestionImages.length} 张图片`;
-            logicImageCount.textContent = `已选择 ${currentLogicImages.length} 张图片`;
-        }
-        
-        // 处理图片上传
-        function setupImageUpload(uploadArea, fileInput, previewContainer, type) {
-            // 点击上传区域
-            uploadArea.addEventListener('click', function() {
-                fileInput.click();
-            });
-            
-            // 文件选择变化
-            fileInput.addEventListener('change', function(e) {
-                if (e.target.files.length > 0) {
-                    const files = Array.from(e.target.files);
-                    processImageFiles(files, previewContainer, type);
+            // 添加键盘快捷键提示
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '1') {
+                    branches[0].scrollIntoView({behavior: 'smooth'});
+                    highlightBranch(branches[0]);
+                } else if (e.key === '2') {
+                    branches[1].scrollIntoView({behavior: 'smooth'});
+                    highlightBranch(branches[1]);
+                } else if (e.key === '3') {
+                    branches[2].scrollIntoView({behavior: 'smooth'});
+                    highlightBranch(branches[2]);
+                } else if (e.key === '4') {
+                    branches[3].scrollIntoView({behavior: 'smooth'});
+                    highlightBranch(branches[3]);
                 }
             });
             
-            // 拖放功能
-            uploadArea.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                this.classList.add('dragover');
-            });
-            
-            uploadArea.addEventListener('dragleave', function() {
-                this.classList.remove('dragover');
-            });
-            
-            uploadArea.addEventListener('drop', function(e) {
-                e.preventDefault();
-                this.classList.remove('dragover');
+            function highlightBranch(branch) {
+                // 移除所有高亮
+                branches.forEach(b => {
+                    b.style.boxShadow = '';
+                    b.style.transform = '';
+                });
                 
-                if (e.dataTransfer.files.length > 0) {
-                    const files = Array.from(e.dataTransfer.files);
-                    processImageFiles(files, previewContainer, type);
-                }
-            });
-        }
-        
-        // 处理多张图片文件
-        function processImageFiles(files, previewContainer, type) {
-            const validFiles = [];
-            
-            // 过滤有效文件
-            files.forEach(file => {
-                // 检查文件类型
-                if (!file.type.match('image.*')) {
-                    alert(`文件 "${file.name}" 不是图片文件，已跳过`);
-                    return;
-                }
+                // 高亮当前分支
+                branch.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.2)';
+                branch.style.transform = 'translateY(-10px) scale(1.02)';
                 
-                // 检查文件大小（最大5MB）
-                if (file.size > 5 * 1024 * 1024) {
-                    alert(`图片 "${file.name}" 太大（${(file.size / 1024 / 1024).toFixed(2)}MB），请选择小于5MB的图片`);
-                    return;
-                }
-                
-                validFiles.push(file);
-            });
-            
-            if (validFiles.length === 0) return;
-            
-            // 处理每个有效文件
-            let processedCount = 0;
-            
-            validFiles.forEach((file, index) => {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    if (type === "question") {
-                        currentQuestionImages.push(e.target.result);
-                        updateImagePreview(previewContainer, currentQuestionImages, type);
-                    } else {
-                        currentLogicImages.push(e.target.result);
-                        updateImagePreview(previewContainer, currentLogicImages, type);
-                    }
-                    
-                    processedCount++;
-                    
-                    // 所有文件处理完成后更新计数
-                    if (processedCount === validFiles.length) {
-                        updateImageCount();
-                    }
-                };
-                reader.readAsDataURL(file);
-            });
-        }
-        
-        // 礼物特效：随机掉落卡通图案
-        function createGiftEffect() {
-            // 清空之前的礼物
-            giftContainer.innerHTML = '';
-            
-            // 随机生成15-25个礼物
-            const giftCount = Math.floor(Math.random() * 11) + 15;
-            
-            for (let i = 0; i < giftCount; i++) {
-                const giftItem = document.createElement('div');
-                giftItem.className = 'gift-item';
-                
-                // 随机选择卡通图案
-                const randomItem = giftItems[Math.floor(Math.random() * giftItems.length)];
-                giftItem.textContent = randomItem;
-                
-                // 随机位置
-                const leftPosition = Math.random() * 100;
-                giftItem.style.left = leftPosition + 'vw';
-                
-                // 随机大小
-                const size = Math.random() * 0.8 + 0.7;
-                giftItem.style.fontSize = (size * 2.5) + 'rem';
-                
-                // 随机颜色（部分表情符号可以使用CSS filter调整颜色）
-                const hue = Math.random() * 360;
-                giftItem.style.filter = `drop-shadow(0 5px 5px rgba(0,0,0,0.2)) hue-rotate(${hue}deg)`;
-                
-                // 随机旋转角度
-                const rotate = Math.random() * 360;
-                giftItem.style.transform = `rotate(${rotate}deg)`;
-                
-                // 随机掉落时间
-                const fallDuration = Math.random() * 2000 + 2000; // 2-4秒
-                const fadeDuration = 2000; // 2秒淡出
-                
-                // 添加到容器
-                giftContainer.appendChild(giftItem);
-                
-                // 设置动画
-                giftItem.style.animation = `fallDown ${fallDuration}ms linear, fadeOut ${fadeDuration}ms ${fallDuration}ms ease-in forwards`;
-                
-                // 动画结束后移除元素
+                // 3秒后移除高亮
                 setTimeout(() => {
-                    if (giftItem.parentNode === giftContainer) {
-                        giftItem.remove();
-                    }
-                }, fallDuration + fadeDuration + 100);
+                    branch.style.boxShadow = '';
+                    branch.style.transform = '';
+                }, 3000);
             }
             
-            // 播放音效提示（可选）
-            if (typeof Audio !== 'undefined') {
-                try {
-                    const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAZGF0YQ');
-                    audio.volume = 0.3;
-                    audio.play().catch(e => console.log("音频播放失败:", e));
-                } catch (e) {
-                    console.log("无法播放音频:", e);
-                }
-            }
-        }
-        
-        // 初始化表单标签
-        updateFormTags();
-        updateImageCount();
-        
-        // 初始化图片上传功能
-        setupImageUpload(questionUploadArea, questionImageInput, questionPreview, "question");
-        setupImageUpload(logicUploadArea, logicImageInput, logicPreview, "logic");
-        
-        // 事件监听器
-        
-        // 页面切换
-        startStudyBtn.addEventListener('click', () => showPage('studyPage'));
-        addFlashcardBtn.addEventListener('click', () => {
-            // 重置表单
-            flashcardForm.reset();
-            flashcardForm.dataset.editingId = "";
-            updateFormTags([]);
-            currentQuestionImages = [];
-            currentLogicImages = [];
-            questionPreview.innerHTML = "";
-            logicPreview.innerHTML = "";
-            updateImageCount();
-            showPage('addFlashcardPage');
-        });
-        selectTagBtn.addEventListener('click', () => showPage('selectTagPage'));
-        flashcardLibraryBtn.addEventListener('click', () => showPage('flashcardLibraryPage'));
-        
-        // 卡片翻转
-        studyFlashcard.addEventListener('click', function() {
-            this.classList.toggle('flipped');
-        });
-        
-        // 学习控制
-        prevCardBtn.addEventListener('click', () => {
-            if (studyDeck.length > 0) {
-                showCard(currentStudyIndex - 1);
-            }
-        });
-        
-        nextCardBtn.addEventListener('click', () => {
-            if (studyDeck.length > 0) {
-                showCard(currentStudyIndex + 1);
-            }
-        });
-        
-        // 修改：返回首页按钮回到学习页面
-        backToHomeBtn.addEventListener('click', () => {
-            currentStudyTag = "all";
-            showPage('studyPage');
-        });
-        
-        // 乱序按钮
-        shuffleBtn.addEventListener('click', function() {
-            if (studyDeck.length > 0) {
-                // 打乱数组
-                for (let i = studyDeck.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [studyDeck[i], studyDeck[j]] = [studyDeck[j], studyDeck[i]];
-                }
-                
-                // 显示第一张卡片
-                currentStudyIndex = 0;
-                showCard(currentStudyIndex);
-                
-                // 更新按钮文本
-                const isShuffled = this.textContent.includes("顺序");
-                this.innerHTML = isShuffled ? 
-                    '<i class="fas fa-random"></i> 乱序学习' : 
-                    '<i class="fas fa-sort-amount-down"></i> 顺序学习';
-            }
-        });
-        
-        // 礼物特效
-        giftBtn.addEventListener('click', createGiftEffect);
-        
-        // 表单提交
-        flashcardForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // 获取表单数据
-            const question = document.getElementById('question').value;
-            const logic = document.getElementById('logic').value;
-            
-            // 获取选中的标签
-            const selectedTags = [];
-            document.querySelectorAll('#formTags .tag.active').forEach(tag => {
-                selectedTags.push(tag.dataset.tag);
-            });
-            
-            // 检查是否至少提供了题目或题目图片
-            if (!question.trim() && currentQuestionImages.length === 0) {
-                alert("请至少提供题目文字或上传题目图片！");
-                return;
-            }
-            
-            // 检查是否至少提供了解题逻辑或解题图片
-            if (!logic.trim() && currentLogicImages.length === 0) {
-                alert("请至少提供解题逻辑文字或上传解题图片！");
-                return;
-            }
-            
-            // 检查是否正在编辑
-            const editingId = this.dataset.editingId;
-            
-            if (editingId) {
-                // 更新现有闪卡
-                const cardIndex = flashcards.findIndex(card => card.id === parseInt(editingId));
-                if (cardIndex !== -1) {
-                    flashcards[cardIndex] = {
-                        ...flashcards[cardIndex],
-                        question,
-                        logic,
-                        tags: selectedTags,
-                        questionImages: [...currentQuestionImages],
-                        logicImages: [...currentLogicImages]
-                    };
-                }
-                
-                // 清除编辑状态
-                delete this.dataset.editingId;
-            } else {
-                // 创建新闪卡
-                const newId = flashcards.length > 0 ? Math.max(...flashcards.map(card => card.id)) + 1 : 1;
-                const newCard = {
-                    id: newId,
-                    question,
-                    logic,
-                    tags: selectedTags,
-                    questionImages: [...currentQuestionImages],
-                    logicImages: [...currentLogicImages]
-                };
-                
-                flashcards.push(newCard);
-                
-                // 添加新标签到标签列表
-                selectedTags.forEach(tag => {
-                    if (!tags.includes(tag)) {
-                        tags.push(tag);
-                        saveTags();
-                    }
-                });
-            }
-            
-            // 保存数据
-            saveFlashcards();
-            
-            // 重置表单
-            this.reset();
-            questionPreview.innerHTML = "";
-            logicPreview.innerHTML = "";
-            currentQuestionImages = [];
-            currentLogicImages = [];
-            updateImageCount();
-            
-            // 显示成功消息
-            alert(editingId ? "闪卡更新成功！" : "闪卡添加成功！");
-            
-            // 返回学习页面
-            currentStudyTag = "all";
-            showPage('studyPage');
-        });
-        
-        // 取消添加
-        cancelAddBtn.addEventListener('click', () => {
-            currentStudyTag = "all";
-            showPage('studyPage');
-        });
-        
-        // 添加新标签
-        document.getElementById('addTagBtn').addEventListener('click', function() {
-            const newTagInput = document.getElementById('newTag');
-            const newTag = newTagInput.value.trim();
-            
-            if (newTag) {
-                // 检查标签是否已存在
-                if (!tags.includes(newTag)) {
-                    tags.push(newTag);
-                    saveTags();
-                    
-                    // 更新表单标签
-                    updateFormTags();
-                    
-                    // 显示成功消息
-                    alert(`标签"${newTag}"已添加！`);
-                } else {
-                    alert(`标签"${newTag}"已存在！`);
-                }
-                
-                // 清空输入框
-                newTagInput.value = "";
-            }
-        });
-        
-        // 返回按钮
-        backFromTagsBtn.addEventListener('click', () => {
-            currentStudyTag = "all";
-            showPage('studyPage');
-        });
-        
-        backFromLibraryBtn.addEventListener('click', () => {
-            currentStudyTag = "all";
-            showPage('studyPage');
-        });
-        
-        // 初始化页面
-        loadData();
-        initStudyPage();
-        
-        // 页面加载完成后显示保存状态
-        window.addEventListener('load', () => {
+            // 初始高亮第一个分支
             setTimeout(() => {
-                showSaveIndicator('已加载本地保存的数据');
-            }, 500);
+                highlightBranch(branches[0]);
+            }, 1000);
         });
     </script>
 </body>
